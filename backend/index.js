@@ -9,6 +9,16 @@ const cors = require("cors");
 app.use(express.json());
 require("dotenv").config();
 
+// Configuration du stockage de l'image avec multer pour la photo de l'utilisateur
+const storage = multer.diskStorage({
+  destination: "./uploads/",
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage: storage });
+app.use(cors());
+
 // Configuration de la connexion MySQL
 const db = mysql.createConnection({
   host: "localhost",
