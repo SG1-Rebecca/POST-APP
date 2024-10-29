@@ -71,7 +71,7 @@ async function displayPosts() {
         </div>
         ${
           post.photo
-            ? `<img src="http://localhost:3000/uploads/${post.photo}" alt="Photo de ${post.pseudo}" class="user-photo" style="width: 60px; height: 60px;"/>`
+            ? `<img src="http://localhost:4000/uploads/${post.photo}" alt="Photo de ${post.pseudo}" class="user-photo" style="width: 60px; height: 60px;"/>`
             : ""
         }
         <div class="actions">
@@ -156,7 +156,7 @@ async function deletePost(postId) {
   if (confirmation) {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/posts/${postId}`,
+        `http://localhost:4000/api/posts/${postId}`,
         {
           method: "DELETE",
         }
@@ -181,7 +181,7 @@ async function toggleLike(postId, currentLikeStatus) {
 
   try {
     const response = await fetch(
-      `http://localhost:3000/api/posts/${postId}/like`,
+      `http://localhost:4000/api/posts/${postId}/like`,
       {
         method: "PUT",
         headers: {
