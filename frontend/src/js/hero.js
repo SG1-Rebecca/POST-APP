@@ -23,3 +23,27 @@ function hideForm() {
     console.error("Le bouton ou le formulaire n'a pas été trouvé.");
   }
 }
+
+// Fonction pour envoyer le formulaire de création d'utilisateur et de post
+async function submitUserForm() {
+  const pseudo = document.getElementById("pseudo").value;
+  const photo = document.getElementById("photo").files[0];
+  const content = document.getElementById("content").value;
+
+  const formData = new FormData();
+  formData.append("pseudo", pseudo);
+  formData.append("content", content);
+  if (photo) {
+    formData.append("photo", photo);
+  }
+
+  try {
+    const response = await postUser(formData);
+    if (response && response.userId) {
+      alert("Utilisateur et post ajoutés avec succès !");
+      hideForm();
+    }
+  } catch (error) {
+    console.error("Erreur lors de l'ajout de l'utilisateur et du post:", error);
+  }
+}

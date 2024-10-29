@@ -1,24 +1,24 @@
 .navbar {
   display: flex;
-  justify-content: flex-start; /* Centre les éléments horizontalement /
-  align-items: center; / Centre les éléments verticalement /
-  padding: 15px 20px; / Espacement autour des éléments de la navbar /
+  justify-content: flex-start; /* Centre les éléments horizontalement */
+  align-items: center; /* Centre les éléments verticalement */
+  padding: 15px 20px; /* Espacement autour des éléments de la navbar */
   font-weight: 800;
   color: white;
 }
 
 .navbar a {
-  color: white; / Couleur des liens /
+  color: white; /* Couleur des liens */
   text-decoration: none;
-  margin: 0 20px; / Espace entre les liens /
+  margin: 0 20px; /* Espace entre les liens */
   font-size: 1.1rem;
 }
 
 .navbar a:hover {
-  color: #ddd; / Couleur des liens au survol */
+  color: #ddd; /* Couleur des liens au survol */
 }
 
-/* Style général pour la carte /
+/* Style général pour la carte */
 .post-card {
   border: 2px solid #87ceeb;
   border-radius: 10px;
@@ -32,7 +32,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/ Style du contenu du post /
+/* Style du contenu du post */
 .post-content {
   font-size: 1rem;
   color: #333;
@@ -43,7 +43,7 @@
   font-weight: bold;
 }
 
-/ Style de la pièce jointe /
+/* Style de la pièce jointe */
 .attachment {
   display: flex;
   align-items: center;
@@ -72,7 +72,7 @@
   cursor: pointer;
 }
 
-/ Style des actions (attacher un fichier et publier) */
+/* Style des actions (attacher un fichier et publier) */
 .actions {
   display: flex;
   justify-content: flex-end;
