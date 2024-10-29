@@ -73,6 +73,49 @@ db.connect((err) => {
   });
 });
 
+app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Route pour ajouter un utilisateur avec photo et un post
+
+app.post("/api/users", upload.single("photo"), (req, res) => {
+  const pseudo = req.body.pseudo;
+  const photoUrl = req.file ? req.file.filename : null;
+  const content = req.body.content;
+  const like = req.body.like || false;
+
+  // Insertion de l'utilisateur dans la table users
+  const userSql = "INSERT INTO users (pseudo, photo) VALUES (?, ?)";
+  db.query(userSql, [pseudo, photoUrl], (err, userResult) => {
+    if (err) {
+      console.error("Erreur lors de l'ajout de l'utilisateur:", err);
+      return res
+        .status(500)
+        .json({ error: "Erreur lors de l'ajout de l'utilisateur" });
+    }
+
+    const userId = userResult.insertId;
+
+    // Insertion du post dans la table posts en associant l'user_id
+    const postSql =
+      "INSERT INTO posts (user_id, content, like, timestamp) VALUES (?, ?, ?, NOW())";
+    db.query(postSql, [userId, content, like], (err) => {
+      if (err) {
+        console.error("Erreur lors de l'ajout du post:", err);
+        return res
+          .status(500)
+          .json({ error: "Erreur lors de l'ajout du post" });
+      }
+
+      // Retourner une réponse JSON valide si tout s'est bien passé
+      res.json({
+        message: "Utilisateur et post ajoutés avec succès !",
+        userId: userId,
+      });
+    });
+  });
+});
+
 app.listen(port, () => {
   console.log(`Serveur lancé sur http://localhost:${port}`);
 });
